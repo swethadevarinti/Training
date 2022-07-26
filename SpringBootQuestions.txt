@@ -1,0 +1,156 @@
+1.What is Spring Boot Actuator?
+Actuators are mainly used to expose the operational information about the running application.like we can know the status of database up/down.
+2.if we use connection pooling concept how many connections are avilable or not.
+to use this feature we need to configure the spring-boot-actuators in pom.xml file.
+http://localhost:8080/actuators
+
+2.How to connect Spring Boot application to database using JDBC?
+First we need to add spring-starter-jdbc dependencyin pom.xml file
+then we need to configue the database ralated details in application.properties file.
+spring.datasource.url=jdbc:mysql://localhost:3306/bookshop
+spring.datasource.username=root
+spring.datasource.password=password
+
+3.Explain different phases of RAD model.
+4.What is the use of profiles in Spring Boot?
+Spring profies helps us to deparate the application properties from different environments.and make avilable to specific environment.
+
+our application may run in different environments based on the environment db details  and server ports also changed.Spring Profiles helps to easily set right configurations on right environments
+
+based on environment we will create different files with db details.
+To set active profile in application.properties file.
+spring.profiles.active=dev
+
+5.What do you mean by Dependency Injection? 
+6.Describe AOP.
+7.What is @RequestMapping annotation in Spring Boot?
+Request mapping annotaion is used to map the request to specific handler class.
+attributes are like value-to specify the url
+method-to specify the http method
+
+8.Explain different types of dependency injection.
+Constrcter injection and setter injection
+
+9.How to handle exception in Spring Boot?
+The @ExceptionHandler is an annotation used to handle the specific exceptions and sending the custom responses to the client.
+You can use the following code to create @ControllerAdvice class to handle the exceptions globally
+
+10.How can you set active profile in Spring Boot?
+spring.profiles.active=dev
+
+11.What do you understand by @Autowired annotation?
+Injecting one bean instance to another bean class.
+
+12.Describe Spring DAO support?
+13.Can we create a non-web application in Spring Boot?
+first we have to implement CommandLineRunner interface and override the run method and write the logic inside run method.
+14.What is the purpose of DevTools in spring Boot?
+ It will  improve the development time while working with the Spring Boot application. Spring Boot DevTools pick up the changes and restart the application.
+To use this we need to add devtool dependency in pom.xml
+
+15.How can you implement Spring security in Spring boot application?
+16.How to configure external ActiveMQ?
+
+
+@Service
+@Repository
+@Component
+@Autowired -- used to inject the instance of abean to another bean.
+@qualifier -- used along with the autowires annotaion to avoid the confusion to which subclass need to injuct
+@Transactional -- used at transaction level
+@Scope - to define the scope of abean
+@Controller -- used to define a controller class
+@RequestMapping - used to map the request to the controller class
+@PathVariable - it is method level annotation is ude to map the request path value to method arument variable.
+a request path of /company/techferry will bind companyName variable with 'techferry' value.
+@Controller
+@RequestMapping("/company")
+public class CompanyController {
+
+  @Autowired
+  private CompanyService companyService;
+
+  @RequestMapping("{companyName}")
+  public String getCompany(Map<String, Object> map, 
+  			@PathVariable String companyName) {
+    Company company = companyService.findByName(companyName);
+    map.put("company", company);
+    return "company";
+  }
+...
+}
+@RequestParam -- can bind request parameters to method variables
+@ModelAttribute
+@SessionAttribute
+@Bean: Indicates that a method produces a bean to be managed by the Spring container
+@PreDestroy and @PostConstruct are alternative way for bean initMethod and destroyMethod.
+@ComponentScan:This annotation enables component scanning in Spring. Java classes that are decorated with stereotypes such as @Component , @Configuration , @Service are auto-detected by Spring
+@component:  @Component indicates that a class might be a candidate for creating a bean
+@EnableAutoConfiguration
+
+13. Differentiate @Component, @Repository and @Service and @Controller?
+
+Typically a web application is developed in layers like the controller (which is the initial point of client communication), business (where the actual code or logic of the application is written) and DAO (where the database connections and interaction happens). In such an architecture web application, @Component can be used in any of the layers. Whereas, the @Controller is used in the controller/web layer. @Service is used in the business layer and @Repository is used in the DAO layer.
+
+14. List out the different scopes of Bean.
+
+(i) Singleton: throughout the spring context only one instance is created.
+
+(ii) Prototype: a new bean is created whenever requested.
+
+(iii) Request: Every HTTP Request creates a bean.
+
+(iv) Session: A bean for every HTTP Session.
+
+20. What is a FrontController?
+
+In spring DispatcherServlet act as a front controller which intercepts all the requests from the client and then dispatches to appropriate controllers.
+
+
+21. What is a ViewResolver?
+
+ViewResolver enables a web application to select its view (such as JSP) dynamically. ViewResolver gets a name which is appended by /WEB-INF/views and a .jsp. All the display on the content is done in an HTML page.
+
+22. List out all the concepts that are available in the MVC Architecture?
+
+(i)  The browser sends a request to DispatcherServlet
+
+(ii) DispatcherServlet knows the HanderMapping and can find the appropriate controllers
+
+(iii) Controllers execute the request and put the data in the model and return back the view name to the DispatcherServlet.
+
+(iv) DispatcherServlet uses the view name and ViewResolver to map to the view.
+
+28. Spring vs Spring MVC vs Spring Boot?
+
+Spring: the most important feature of Spring is Dependency Injection or Inversion of Control.
+
+Spring MVC: provides a decoupled approach in developing web applications. Concepts like DispatcherServlet, ModelAndView, ViewResolver makes web application development easy.
+
+Spring Boot: makes the configuration very easy and automatic using a feature called Auto Configuration, in which the DispatcherServlet is done by Spring internally.
+
+29. What is the role of @SpringBootApplication?
+
+This annotation is used to launch up the entire application. Internally, @SpringBootApplication does the following,
+
+@SpringBootConfiguration: same as @Configuration in a Spring Application.
+
+@EnableAutoConfiguration: auto-configures the classes available in the classpath.
+
+@ComponentScan: all the classes available under a package will be scanned when this annotation is applied.
+
+31. Why do we use application.properties?
+
+The file application.properties is used to configure things like database details, log generation, security (username/password), serialization, etc.
+
+
+
+------------------------------------------------------------------------------------------------
+1.How we can improve the memory management in java8.
+2. Explain bubble sort?
+3. Explain Binary Search with Example?
+4. Do you know about the sorting algorithms?
+5. What is time complexity?
+6. Explain me about the bubble sort and its time complexity?
+7. How can you reduce the time complexity of the program?
+8. Why still Java 8 is used why not recent newer versions of JAVA?
